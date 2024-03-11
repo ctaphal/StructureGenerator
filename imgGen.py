@@ -5,12 +5,17 @@ from rdkit.Chem import Draw
 # Function to generate molecular structure image and save it to disk
 def generate_mol_image(smiles):
 
+# Define the width and height of the image
+    width = 72  # in pixels
+    height = 72  # in pixels
+
+# Generate and save the image with the specified size
     images_paths = []
     for i, smile in enumerate(smiles):
         mol = Chem.MolFromSmiles(smile)
         if mol is not None:
             image_path = f"imgs/molecule_{i}.png"
-            Draw.MolToFile(mol, image_path)
+            Draw.MolToFile(mol, image_path, size=(width, height))
             images_paths.append(image_path)
         else:
             images_paths.append(None)
